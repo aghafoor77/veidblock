@@ -1,0 +1,52 @@
+database:
+  driverClass: com.mysql.jdbc.Driver
+  url: jdbc:mysql://localhost:3306/veidblock
+  user: root
+  password: 1234 
+  maxWaitForConnection: 1s
+  validationQuery: "SELECT 1"
+  validationQueryTimeout: 3s
+  minSize: 8
+  maxSize: 32
+  checkConnectionWhileIdle: false
+  evictionInterval: 10s
+  minIdleTime: 1 minute
+  checkConnectionOnBorrow: true
+  
+ipv:
+  host: http://localhost
+  port: 8000
+  timeout: 10000ms
+  connectionTimeout: 10000ms
+  timeToLive: 1h
+  cookiesEnabled: false
+  maxConnections: 1024
+  maxConnectionsPerRoute: 1024
+  keepAlive: 0ms
+  retries: 0
+
+veidblock:
+  validatorList: http://localhost:8000, http://localhost:9000
+  
+  
+ 
+server:
+  applicationConnectors:
+  - type: http 
+    port: 9000
+  adminConnectors:
+  - type: http
+    port: 9001
+    
+logging:
+  level: INFO
+  loggers:
+    "io.dropwizard": INFO  
+  appenders:
+    - type: console
+      threshold: ALL
+      timeZone: UTC
+      target: stdout
+
+swagger:
+  resourcePackage: org.acreo.auth.resources
